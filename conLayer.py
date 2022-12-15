@@ -3,14 +3,13 @@ import os
 from dotenv import load_dotenv
 
 
-
 def dbConnection():
     load_dotenv()
-    host=os.getenv('MYSQL_HOST')
-    user=os.getenv('MYSQL_USER')
-    password=os.getenv('MYSQL_PASSWORD')
-    db=os.getenv('MYSQL_DB')
-    
+    host = os.getenv('MYSQL_HOST')
+    user = os.getenv('MYSQL_USER')
+    password = os.getenv('MYSQL_PASSWORD')
+    db = os.getenv('MYSQL_DB')
+
     try:
         with connect(
             host=host,
