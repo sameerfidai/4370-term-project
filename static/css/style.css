@@ -29,3 +29,23 @@ select {
     cursor: pointer;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.chart-div {
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chart-header {
+    margin-bottom: 20px;
+}
+
+.chart-description {
+    margin-top: 50px;
+}
+
+.chart {
+    border: 10px solid gray;
+}

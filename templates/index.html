@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% block head %}
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href={{ url_for('static',
         filename='css/style.css') }}>
         <title>Home</title>
+        {% endblock %}
     </head>
     <body>
         <div class="main-container">
@@ -14,15 +16,22 @@
                 <h1>Fehintola, Sameer, Sushruth</h1>
                 <h1>CSCI-4370 Term Project</h1>
                 <div class="dropdown-select">
-                    <select class="">
-                        <option value="1">Query 1</option>
+                    <select onChange="window.location.href=this.value">
+                        <!-- <option value="1"><a href="/chart1">Query 1</a></option>
                         <option value="2">Query 2</option>
                         <option value="3">Query 3</option>
                         <option value="4">Query 4</option>
-                        <option value="5">Query 5</option>
+                        <option value="5">Query 5</option> -->
+                        {% for option in options %}
+                        <!-- <option>
+                            <a href="{{ option.link }}">{{ option.label }}</a>
+                        </option> -->
+                        <option value="{{ option.link }}">{{ option.label }}</option>
+                        {% endfor %}
                     </select>
                 </div>
             </nav>
+            {% block content %} {% endblock %}
         </div>
     </body>
 </html>
