@@ -1,0 +1,17 @@
+{% extends "index.html" %} {% block content %}
+
+<div class="chart-div">
+    <h3>{{data}}</h3>
+    <h1>{{dir_name}}</h1>
+    <h1 class="chart-header">{{header}}</h1>
+    <div id="chart" class="chart"></div>
+    <div class="chart-description">{{description}}</div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graphs = {{graphJSON | safe}};
+    Plotly.plot('chart',graphs,{});
+</script>
+
+{% endblock %}

@@ -36,52 +36,48 @@ def query1():
     except Exception as e:
         print(e)
 
-##query2 need to figure out how to send inputs from flask server and
 
-
-def query2(year1,year2):
+# query2 need to figure out how to send inputs from flask server and
+def query2(year1, year2):
     try:
-        args=[year1,year2]
+        args = [year1, year2]
         connection = dbConnection()
         cursor = connection.cursor()
-        cursor.callproc('Query2',args)
+        cursor.callproc('Query2', args)
         for i in cursor.stored_results():
             return str(i.fetchall())
     except Exception as e:
         print(e)
 
 
+# query 3
 def query3(dirname1):
     try:
         # print("Ran query3")
         # print(dirname1)
         # print(dirname2)
-        results=0;
-        tconst=""
-        args=[dirname1]
+        results = 0
+        tconst = ""
+        args = [dirname1]
         connection = dbConnection()
         cursor = connection.cursor()
-        cursor.callproc('Query3',args)
+        cursor.callproc('Query3', args)
         for i in cursor.stored_results():
-            #return str(i.fetchall())
+            # return str(i.fetchall())
             for x in i.fetchall():
-            
-                tconst=x[0]
-        
-        tconstData=tconst.split(",")
-        tconstData=tconstData[:-1]
-        title=tconstData[0]
-        title2=tconstData[1]
-        title3=tconstData[2]
-        args2=[title,title2,title3]
-        cursor.callproc('findGenre',args2)
+
+                tconst = x[0]
+
+        tconstData = tconst.split(",")
+        tconstData = tconstData[:-1]
+        title = tconstData[0]
+        title2 = tconstData[1]
+        title3 = tconstData[2]
+        args2 = [title, title2, title3]
+        cursor.callproc('findGenre', args2)
         for x in cursor.stored_results():
-            #return str(i.fetchall())
-            
+            # return str(i.fetchall())
+
             return str(x.fetchall())
     except Exception as e:
         print(e)
-
-
-
-
