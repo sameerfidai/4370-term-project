@@ -46,6 +46,47 @@ select {
     margin-top: 50px;
 }
 
-.chart {
-    border: 10px solid gray;
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
+}
+
+.chart-2-from {
+    color: white;
+    margin: 20px;
+}
+
+.chart-2-from input {
+    border: none;
+    border-radius: 15px;
+    height: 20px;
+    text-align: center;
+}
+
+.chart-2-to {
+    color: white;
+    margin: 20px;
+}
+
+.chart-2-to input {
+    border: none;
+    border-radius: 15px;
+    height: 20px;
+    text-align: center;
+}
+
+.submit-btn {
+    margin: 20px;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: gray;
+    color: white;
+}
+
+.submit-btn:hover {
+    opacity: 0.6;
 }
