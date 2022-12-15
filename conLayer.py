@@ -25,6 +25,7 @@ def dbConnection():
     return connection
 
 
+# query 1
 def query1():
     try:
         connection = dbConnection()

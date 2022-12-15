@@ -1,0 +1,17 @@
+{% extends "index.html" %} {% block content %}
+
+<form method="POST">
+    <div class="chart-2-from">
+        <label for="From">From:</label>
+        <input type="number" name="from_year" />
+    </div>
+    <div class="chart-2-to">
+        <label for="To">To:</label>
+        <input type="number" name="to_year" />
+    </div>
+    <div>
+        <input class="submit-btn" type="submit" />
+    </div>
+</form>
+
+{% endblock %}
