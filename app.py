@@ -36,8 +36,8 @@ def db():
 
 
 # query 1
-@app.route('/chart1')
-def chart1():
+@app.route('/chart10')
+def chart10():
     df = pd.DataFrame({
         "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
         "Amount": [4, 1, 2, 2, 4, 5],
@@ -53,6 +53,22 @@ def chart1():
     San Francisco and Montreal would probably not come up with this chart.
     """
     return render_template('chart1.html', graphJSON=graphJSON, header=header, description=description, options=options)
+
+
+# GET data for query 1
+@app.route('/chart1')
+def chart1():
+    return render_template('chart1data.html', options=options)
+
+
+# render query 1
+@app.route('/chart1', methods=['POST'])
+def chart1_post():
+    month = request.form['month']
+    data = conLayer.query1(month)
+    header = "Query 1"
+    description = "Description."
+    return render_template('chart1.html', options=options, month=month, data=data, header=header, description=description)
 
 
 # GET data for query 2
@@ -120,8 +136,6 @@ def chart5_post():
     header = "Query 5"
     description = "Description."
     return render_template('chart5.html', options=options, from_year=from_year, to_year=to_year, genre=genre, data=data, header=header, description=description)
-
-
 
 
 if __name__ == "__main__":
