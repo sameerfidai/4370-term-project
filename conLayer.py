@@ -26,4 +26,3 @@ def dbConnection():
     # app.config['MYSQL_DB'] = db
     # mysql=MySQL(app)
     # cur=mysql.connection.cursor()
-    return connection

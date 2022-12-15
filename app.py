@@ -11,6 +11,6 @@ def homepage():
 @app.route("/db")
 def db():
     data=conLayer.dbConnection()
-    return data
+    return "connected to the database."
 if __name__ == "__main__":
     app.run(debug=True)
