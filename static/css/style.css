@@ -1,23 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+body {
+    height: 100%;
+    width: 100%;
+}
+
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
 }
 
 .main-container {
-    height: 100vh;
-    width: 100%;
+    min-height: 100vh;
     background-color: #121212;
     color: #e0e0e0;
+}
+
+.home-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 nav {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding-top: 20px;
+    padding: 20px;
+    border-bottom: 3px solid gray;
 }
 
 select {
@@ -28,6 +42,7 @@ select {
     border-radius: 20px;
     cursor: pointer;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
 }
 
 .chart-div {
@@ -56,35 +71,53 @@ form {
 .chart-2-from {
     color: white;
     margin: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chart-2-from label {
+    font-size: 40px;
+    margin-right: 10px;
 }
 
 .chart-2-from input {
     border: none;
     border-radius: 15px;
-    height: 20px;
+    height: 40px;
     text-align: center;
+    font-size: 20px;
 }
 
 .chart-2-to {
     color: white;
     margin: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chart-2-to label {
+    font-size: 40px;
+    margin-right: 10px;
 }
 
 .chart-2-to input {
     border: none;
     border-radius: 15px;
-    height: 20px;
+    height: 40px;
     text-align: center;
+    font-size: 20px;
 }
 
 .submit-btn {
     margin: 20px;
+    width: 160px;
     border: none;
-    border-radius: 10px;
-    padding: 5px;
+    border-radius: 15px;
+    padding: 5px 10px 5px 10px;
     cursor: pointer;
     background-color: gray;
     color: white;
+    font-size: 30px
 }
 
 .submit-btn:hover {
