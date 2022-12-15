@@ -43,6 +43,14 @@ def query2():
     data=conLayer.query2(year1,year2)
     return data
 
+
+@app.route("/query3",methods=["POST"])
+def query3():
+    data = request.json
+    year1=data["dirname"]
+    print(year1)
+    data=conLayer.query3(year1)
+    return data
 @app.route("/dash")
 def dash():
     return render_template("notdash2.html")
