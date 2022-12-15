@@ -83,10 +83,8 @@ def query3(dirname1):
         print(e)
 
 
-#query4 
-
+# query4
 def query4(dirname1):
-
     try:
         # print("Ran query3")
         # print(dirname1)
@@ -114,23 +112,20 @@ def query4(dirname1):
             # return str(i.fetchall())
 
             return str(x.fetchall())
-    
-
 
     except Exception as e:
         print(e)
 
-    
-#query5
 
-def query5(year1,year2,gen):
+# query5
+def query5(year1, year2, gen):
     try:
-        args = [year1,year2,gen]
+        args = [year1, year2, gen]
         connection = dbConnection()
         cursor = connection.cursor()
         cursor.callproc('Query5', args)
         for i in cursor.stored_results():
-                # return str(i.fetchall())
+            # return str(i.fetchall())
             return str((i.fetchall()))
     except Exception as e:
         print(e)
