@@ -99,8 +99,8 @@ def chart4():
 @app.route('/chart4', methods=['POST'])
 def chart4_post():
     director_name = request.form['director_name']
-    print(director_name)
-    return render_template('chart3.html', options=options, dir_name=director_name)
+    data = conLayer.query4(director_name)
+    return render_template('chart3.html', options=options, dir_name=director_name,data=data)
 
 
 if __name__ == "__main__":
