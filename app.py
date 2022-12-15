@@ -38,6 +38,7 @@ def query2():
     data = request.json
     year1=data["fromYear"]
     year2=data["toYear"]
+    
     data=conLayer.query2(year1,year2)
     return data
 
