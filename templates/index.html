@@ -31,6 +31,15 @@
                     </select>
                 </div>
             </nav>
+
+            {% if (request.path == "/") %}
+            <div class="home-container">
+                <h1>Welcome to our Term Project.</h1>
+                <br>
+                <h1>Please select a query from the dropdown menu in the top left.</h1>
+            </div>
+            {% endif %}
+
             {% block content %} {% endblock %}
         </div>
     </body>
