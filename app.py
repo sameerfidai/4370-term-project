@@ -14,7 +14,7 @@ options = [
     {'link': '/chart1', 'label': 'Query 1'},
     {'link': '/chart2', 'label': 'Query 2'},
     {'link': '/chart3', 'label': 'Query 3'},
-    {'link': '/chart1', 'label': 'Query 4'},
+    {'link': '/chart4', 'label': 'Query 4'},
     {'link': '/chart1', 'label': 'Query 5'},
 
 ]
@@ -87,6 +87,20 @@ def chart3_post():
     data = conLayer.query3(director_name)
     print(data)
     return render_template('chart3.html', options=options, dir_name=director_name, data=data)
+
+
+# get data for query 4
+@app.route('/chart4')
+def chart4():
+    return render_template('chart3data.html', options=options)
+
+
+# render query 4
+@app.route('/chart4', methods=['POST'])
+def chart4_post():
+    director_name = request.form['director_name']
+    print(director_name)
+    return render_template('chart3.html', options=options, dir_name=director_name)
 
 
 if __name__ == "__main__":
