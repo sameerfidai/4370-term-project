@@ -27,10 +27,11 @@ def index():
 
 @app.route("/db")
 def db():
+    month = request.form['month']
     # need to handle the data here, making the assumption that
     # [('Action,Adventure,Drama', '99644'), ('Comedy,Drama', '98906'), ('Biography,Comedy,Crime', '987857'), ('Drama', '98587'), ('Comedy', '98587')]
     # first category is the genre of movie, we need to get Action and the revenue(last element)
-    data = conLayer.query1()
+    data = conLayer.query1(month)
     return data
 
 

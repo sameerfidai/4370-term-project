@@ -26,11 +26,12 @@ def dbConnection():
 
 
 # query 1
-def query1():
+def query1(month):
     try:
+        args=[month]
         connection = dbConnection()
         cursor = connection.cursor()
-        cursor.callproc('Query1')
+        cursor.callproc('Query1',args)
         for i in cursor.stored_results():
             return str(i.fetchall())
     except Exception as e:
