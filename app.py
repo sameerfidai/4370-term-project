@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request, jsonify
 import conLayer
 
 import pandas as pd
@@ -32,6 +32,14 @@ def db():
     data = conLayer.query1()
     return data
 
+
+@app.route("/query2",methods=["POST"])
+def query2():
+    data = request.json
+    year1=data["fromYear"]
+    year2=data["toYear"]
+    data=conLayer.query2(year1,year2)
+    return data
 
 @app.route("/dash")
 def dash():
