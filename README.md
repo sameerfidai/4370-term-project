@@ -3,6 +3,7 @@
 Built with Python and Flask
 
 Import SQL file 
+
 Enter DB Credentials in .env
 
 To run:
