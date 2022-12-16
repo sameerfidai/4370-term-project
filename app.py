@@ -72,10 +72,23 @@ def chart1():
 # render query 1
 @app.route('/chart1', methods=['POST'])
 def chart1_post():
+    genre_bo={}
     month = request.form['month']
     data = conLayer.query1(month)
+    for i in data:
+        gen_str=i[0]
+        bo_str=i[1]
+        
+        #mainGenre
+        mainGenreList=list(gen_str.split(","))
+        mainGenre=mainGenreList[0]
+        genre_bo[mainGenre]=bo_str
+    df=pd.DataFrame(list(genre_bo.items()))
+    fig = px.bar(df, x='Fruit', y='Amount', color='City', 
+      barmode='group')
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header = "Query 1"
-    description = "Shows the top 5 genres of movies in the chosen month"
+    description = "Shows the top 3 genres of movies in the chosen month"
     return render_template('chart1.html', options=options, month=month, data=data, header=header, description=description)
 
 

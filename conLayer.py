@@ -33,7 +33,7 @@ def query1(month):
         cursor = connection.cursor()
         cursor.callproc('Query1',args)
         for i in cursor.stored_results():
-            return str(i.fetchall())
+            return list(i.fetchall())
     except Exception as e:
         print(e)
 
@@ -46,7 +46,7 @@ def query2(year1, year2):
         cursor = connection.cursor()
         cursor.callproc('Query2', args)
         for i in cursor.stored_results():
-            return str(i.fetchall())
+            return list(i.fetchall())
     except Exception as e:
         print(e)
 
@@ -79,7 +79,7 @@ def query3(dirname1):
         for x in cursor.stored_results():
             # return str(i.fetchall())
 
-            return str(x.fetchall())
+            return list(x.fetchall())
     except Exception as e:
         print(e)
 
@@ -112,7 +112,7 @@ def query4(dirname1):
         for x in cursor.stored_results():
             # return str(i.fetchall())
 
-            return str(x.fetchall())
+            return list(x.fetchall())
 
     except Exception as e:
         print(e)
@@ -127,6 +127,6 @@ def query5(year1, year2, gen):
         cursor.callproc('Query5', args)
         for i in cursor.stored_results():
             # return str(i.fetchall())
-            return str((i.fetchall()))
+            return list((i.fetchall()))
     except Exception as e:
         print(e)
