@@ -25,6 +25,11 @@ def index():
     return render_template('index.html', options=options)
 
 
+
+"""
+Run Query1, allows the user to select the a month to obtain the top 5 genres of movies by Box office collection
+
+"""
 @app.route("/db")
 def db():
     month = request.form['month']
@@ -56,6 +61,9 @@ def chart10():
 
 
 # GET data for query 1
+"""
+Obtains the data from query1 to plot a chart representing the data of Query1
+"""
 @app.route('/chart1')
 def chart1():
     return render_template('chart1data.html', options=options)
@@ -67,7 +75,7 @@ def chart1_post():
     month = request.form['month']
     data = conLayer.query1(month)
     header = "Query 1"
-    description = "Description."
+    description = "Shows the top 5 genres of movies in the chosen month"
     return render_template('chart1.html', options=options, month=month, data=data, header=header, description=description)
 
 
@@ -84,7 +92,7 @@ def chart2_post():
     to_year = request.form['to_year']
     data = conLayer.query2(from_year, to_year)
     header = "Query 2"
-    description = "Description."
+    description = "Show the top 3 Box Office Collection in the year range"
     return render_template('chart2.html', options=options, from_year=from_year, to_year=to_year, data=data, header=header, description=description)
 
 
@@ -100,7 +108,7 @@ def chart3_post():
     director_name = request.form['director_name']
     data = conLayer.query3(director_name)
     header = "Query 3"
-    description = "Description."
+    description = "Shows the top 3 genres the director is famous for making movies in"
     return render_template('chart3.html', options=options, dir_name=director_name, data=data, header=header, description=description)
 
 
@@ -116,7 +124,7 @@ def chart4_post():
     director_name = request.form['director_name']
     data = conLayer.query4(director_name)
     header = "Query 4"
-    description = "Description."
+    description = "Shows the avg Rating of the Directors Movies"
     return render_template('chart3.html', options=options, dir_name=director_name, data=data, header=header, description=description)
 
 
@@ -134,7 +142,7 @@ def chart5_post():
     genre = request.form['genre'] + '%'
     data = conLayer.query5(from_year, to_year, genre)
     header = "Query 5"
-    description = "Description."
+    description = "Shows the number of movies beloging to a genre between 2 time ranges."
     return render_template('chart5.html', options=options, from_year=from_year, to_year=to_year, genre=genre, data=data, header=header, description=description)
 
 
