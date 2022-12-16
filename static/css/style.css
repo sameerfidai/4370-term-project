@@ -58,7 +58,12 @@ select {
 }
 
 .chart-description {
+    margin-bottom: 30px;
+}
+
+.month {
     margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 form {
@@ -118,7 +123,7 @@ form {
     cursor: pointer;
     background-color: gray;
     color: white;
-    font-size: 30px
+    font-size: 30px;
 }
 
 .submit-btn:hover {

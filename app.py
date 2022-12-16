@@ -64,24 +64,31 @@ Run Query1, allows the user to select the a month to obtain the top 5 genres of 
 
 @app.route('/chart1', methods=['POST'])
 def chart1_post():
-    genre_bo={}
+
+    genre_bo = {}
+    genre_bo["Genre"] = []
+    genre_bo["Box Office Collection"] = []
     month = request.form['month']
     data = conLayer.query1(month)
+
     for i in data:
-        gen_str=i[0]
-        bo_str=i[1]
-        
-        #mainGenre
-        mainGenreList=list(gen_str.split(","))
-        mainGenre=mainGenreList[0]
-        genre_bo[mainGenre]=bo_str
-    df=pd.DataFrame(list(genre_bo.items()))
-    fig = px.bar(df, x='Fruit', y='Amount', color='City', 
-      barmode='group')
+        genre_bo["Box Office Collection"].append(int(i[1]))
+        genre_str = i[0]
+        gen_list = list(genre_str.split(","))
+        genre_bo["Genre"].append(gen_list[0])
+
+    df = pd.DataFrame(genre_bo, columns=[
+                      "Genre", "Box Office Collection"])
+
+    fig = px.bar(df, x='Genre', y='Box Office Collection',
+                 color='Genre', barmode='group')
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
     header = "Query 1"
-    description = "Shows the top 3 genres of movies in the chosen month"
-    return render_template('chart1.html', options=options, month=month, data=data, header=header, description=description)
+    description = "Shows the top genres of movies for the month of " + \
+        str(month)
+
+    return render_template('chart1.html', options=options, month=month, data=data, header=header, description=description, graphJSON=graphJSON)
 
 
 # GET data for query 2
