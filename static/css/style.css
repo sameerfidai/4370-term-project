@@ -61,11 +61,6 @@ select {
     margin-bottom: 30px;
 }
 
-.month {
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
-
 form {
     display: flex;
     justify-content: center;

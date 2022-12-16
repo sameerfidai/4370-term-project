@@ -100,12 +100,30 @@ def chart2():
 # render query2
 @app.route('/chart2', methods=['POST'])
 def chart2_post():
+    movie_bo = {}
     from_year = request.form['from_year']
     to_year = request.form['to_year']
+
+    # exectues query2
     data = conLayer.query2(from_year, to_year)
+    for i in data:
+        print(i)
+        movie_str = i[0]
+        bo_str = i[2]
+
+       # movie:box office map
+        movie_bo[movie_str] = bo_str
+    df = pd.DataFrame(list(movie_bo.items()), columns=[
+                      "Movie name", "Box Office"])
+    df['Box Office'] = df['Box Office'].astype(str).astype(float)
+    df_sorted = df.sort_values(by=['Box Office'], ascending=False)
+    fig = px.bar(df_sorted, x='Movie name', y='Box Office', color='Movie name',
+                 barmode='group')
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header = "Query 2"
-    description = "Show the top 3 Box Office Collection in the year range"
-    return render_template('chart2.html', options=options, from_year=from_year, to_year=to_year, data=data, header=header, description=description)
+    description = "Show the top 3 Box Office Collection between the year {} and {}".format(
+        from_year, to_year)
+    return render_template('chart2.html', options=options, from_year=from_year, to_year=to_year, data=data, header=header, description=description, graphJSON=graphJSON)
 
 
 # GET data for query 3
