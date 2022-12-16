@@ -25,22 +25,6 @@ def index():
     return render_template('index.html', options=options)
 
 
-
-"""
-Run Query1, allows the user to select the a month to obtain the top 5 genres of movies by Box office collection
-
-"""
-@app.route("/db")
-def db():
-    month = request.form['month']
-    # need to handle the data here, making the assumption that
-    # [('Action,Adventure,Drama', '99644'), ('Comedy,Drama', '98906'), ('Biography,Comedy,Crime', '987857'), ('Drama', '98587'), ('Comedy', '98587')]
-    # first category is the genre of movie, we need to get Action and the revenue(last element)
-    data = conLayer.query1(month)
-    return data
-
-
-# query 1
 @app.route('/chart10')
 def chart10():
     df = pd.DataFrame({
@@ -60,16 +44,24 @@ def chart10():
     return render_template('chart1.html', graphJSON=graphJSON, header=header, description=description, options=options)
 
 
-# GET data for query 1
 """
 Obtains the data from query1 to plot a chart representing the data of Query1
 """
+# GET data for query 1
+
+
 @app.route('/chart1')
 def chart1():
     return render_template('chart1data.html', options=options)
 
 
+"""
+Run Query1, allows the user to select the a month to obtain the top 5 genres of movies by Box office collection
+"""
+# query 1
 # render query 1
+
+
 @app.route('/chart1', methods=['POST'])
 def chart1_post():
     genre_bo={}
