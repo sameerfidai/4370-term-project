@@ -1,0 +1,54 @@
+{% set hr=('=' * (name|length + 2)) -%}
+{{ hr }}
+ {{ name }}
+{{ hr }}
+
+TODO: Rewrite me. Append your package's long description.
+
+{% if username %}
+Status
+======
+
+.. image:: https://secure.travis-ci.org/{{ username }}/{{ name }}.png?branch=master
+   :target: http://travis-ci.org/{{ username }}/{{ name }}
+.. image:: https://coveralls.io/repos/{{ username }}/{{ name }}/badge.png?branch=master
+   :target: https://coveralls.io/r/{{ username }}/{{ name }}?branch=master
+.. image:: https://img.shields.io/pypi/v/{{ name }}.svg
+   :target: https://pypi.python.org/pypi/{{ name }}
+.. image:: https://readthedocs.org/projects/{{ name }}/badge/?version=latest
+   :target: https://readthedocs.org/projects/{{ name }}/?badge=latest
+   :alt: Documentation Status
+{% endif %}
+
+Requirements
+============
+
+* Python 3.7 over
+
+Features
+========
+
+* ToDo: Rewrite me.
+
+Setup
+=====
+
+::
+
+  $ python -m pip install --user {{ name }}
+  or
+  (venv)$ python -m pip install {{ name }}
+
+Usage
+=====
+
+ToDo: Rewrite me.
+
+::
+
+  $ python
+  >>> import {{ module_name }}
+  >>> {{ module_name }}.sample.hello()
+  'hello'
+  >>>
+

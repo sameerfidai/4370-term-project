@@ -26,7 +26,9 @@
                         <!-- <option>
                             <a href="{{ option.link }}">{{ option.label }}</a>
                         </option> -->
-                        <option value="{{ option.link }}">{{ option.label }}</option>
+                        <option value="{{ option.link }}">
+                            {{ option.label }}
+                        </option>
                         {% endfor %}
                     </select>
                 </div>
@@ -35,12 +37,13 @@
             {% if (request.path == "/") %}
             <div class="home-container">
                 <h1>Welcome to our Term Project.</h1>
-                <br>
-                <h1>Please select a query from the dropdown menu in the top left.</h1>
+                <br />
+                <h1>
+                    Please select a query from the dropdown menu in the top
+                    left.
+                </h1>
             </div>
-            {% endif %}
-
-            {% block content %} {% endblock %}
+            {% endif %} {% block content %} {% endblock %}
         </div>
     </body>
 </html>

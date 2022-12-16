@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import conLayer
+from tabulate import tabulate
+
 
 import pandas as pd
 import json
@@ -135,11 +137,28 @@ def chart3():
 # render query 3
 @app.route('/chart3', methods=['POST'])
 def chart3_post():
+    dir_bo = {}
+    dir_bo["Movie"] = []
+    dir_bo["Genre"] = []
     director_name = request.form['director_name']
     data = conLayer.query3(director_name)
+    for i in data:
+        movie_str = i[0]
+        dir_bo["Movie"].append(movie_str)
+        bo_str = i[1]
+        bo_list = list(bo_str.split(","))
+        dir_bo["Genre"].append(bo_list[0])
+
+    df = pd.DataFrame(dir_bo, columns=[
+                      "Movie", "Genre"])
+    print(df)
+    result = df.to_html()
+
     header = "Query 3"
-    description = "Shows the top 3 genres the director is famous for making movies in"
-    return render_template('chart3.html', options=options, dir_name=director_name, data=data, header=header, description=description)
+    description = "Shows the top 3 genres the {} is famous for making movies in".format(
+        director_name)
+
+    return render_template('chart3.html', options=options, dir_name=director_name, data=data, header=header, description=description, result=result)
 
 
 # GET data for query 4
@@ -151,11 +170,25 @@ def chart4():
 # render query 4
 @app.route('/chart4', methods=['POST'])
 def chart4_post():
+    dir_rating = {}
     director_name = request.form['director_name']
+    dir_rating["Director Name"] = director_name
+    dir_rating["Avg Rating"] = 0
     data = conLayer.query4(director_name)
+    result = 0
+    for i in data:
+        result = i[0]
+
+        dir_rating["Avg Rating"] = result
+    df = pd.DataFrame(list(dir_rating.items()))
+
+    print(df)
+    result = df.to_html()
+
     header = "Query 4"
     description = "Shows the avg Rating of the Directors Movies"
-    return render_template('chart3.html', options=options, dir_name=director_name, data=data, header=header, description=description)
+
+    return render_template('chart4.html', options=options, dir_name=director_name, data=data, header=header, description=description, result=result)
 
 
 # GET data for query 5
@@ -167,13 +200,27 @@ def chart5():
 # render query 5
 @app.route('/chart5', methods=['POST'])
 def chart5_post():
+    count = {}
     from_year = request.form['from_year']
     to_year = request.form['to_year']
     genre = request.form['genre'] + '%'
+    gen_copy = request.form['genre']
     data = conLayer.query5(from_year, to_year, genre)
+    count["Time-range"] = str(from_year)+"-"+str(to_year)
+    count["genre"] = gen_copy
+    count["count"] = 0
+    for i in data:
+        count["count"] = i[0]
+
+    df = pd.DataFrame(list(count.items()))
+    result = df.to_html()
+    # result = result[:34] + ' table thead-light' + result[34:]
+    print(result)
+
     header = "Query 5"
-    description = "Shows the number of movies beloging to a genre between 2 time ranges."
-    return render_template('chart5.html', options=options, from_year=from_year, to_year=to_year, genre=genre, data=data, header=header, description=description)
+    description = "Shows the number of movies belonging to the genre {} between 2 time ranges {}-{}.".format(
+        gen_copy, from_year, to_year)
+    return render_template('chart5.html', options=options, from_year=from_year, to_year=to_year, genre=genre, data=data, header=header, description=description, result=result)
 
 
 if __name__ == "__main__":
