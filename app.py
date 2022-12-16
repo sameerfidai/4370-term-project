@@ -27,25 +27,6 @@ def index():
     return render_template('index.html', options=options)
 
 
-@app.route('/chart10')
-def chart10():
-    df = pd.DataFrame({
-        "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-        "Amount": [4, 1, 2, 2, 4, 5],
-        "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-    })
-
-    fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
-
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    header = "Fruit in North America"
-    description = """
-    A academic study of the number of apples, oranges and bananas in the cities of
-    San Francisco and Montreal would probably not come up with this chart.
-    """
-    return render_template('chart1.html', graphJSON=graphJSON, header=header, description=description, options=options)
-
-
 """
 Obtains the data from query1 to plot a chart representing the data of Query1
 """
@@ -54,7 +35,9 @@ Obtains the data from query1 to plot a chart representing the data of Query1
 
 @app.route('/chart1')
 def chart1():
-    return render_template('chart1data.html', options=options)
+    header = "Query 1"
+    description = "Shows the top genres of movies for a month (all-time)"
+    return render_template('chart1data.html', options=options, header=header, description=description)
 
 
 """
@@ -88,7 +71,7 @@ def chart1_post():
 
     header = "Query 1"
     description = "Shows the top genres of movies for the month of " + \
-        str(month)
+        str(month) + " (all time)"
 
     return render_template('chart1.html', options=options, month=month, data=data, header=header, description=description, graphJSON=graphJSON)
 
@@ -96,7 +79,9 @@ def chart1_post():
 # GET data for query 2
 @app.route('/chart2')
 def chart2():
-    return render_template('chart2data.html', options=options)
+    header = "Query 2"
+    description = "Shows the top 3 Box Office Collection between 2 years"
+    return render_template('chart2data.html', options=options, header=header, description=description)
 
 
 # render query2
@@ -123,7 +108,7 @@ def chart2_post():
                  barmode='group')
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header = "Query 2"
-    description = "Show the top 3 Box Office Collection between the year {} and {}".format(
+    description = "Shows the top 3 Box Office Collection between the year {} and {}".format(
         from_year, to_year)
     return render_template('chart2.html', options=options, from_year=from_year, to_year=to_year, data=data, header=header, description=description, graphJSON=graphJSON)
 
@@ -131,7 +116,9 @@ def chart2_post():
 # GET data for query 3
 @app.route('/chart3')
 def chart3():
-    return render_template('chart3data.html', options=options)
+    header = "Query 3"
+    description = "Shows the top 3 genres that a director is famous for making movies in"
+    return render_template('chart3data.html', options=options, header=header, description=description)
 
 
 # render query 3
@@ -155,7 +142,7 @@ def chart3_post():
     result = df.to_html()
 
     header = "Query 3"
-    description = "Shows the top 3 genres the {} is famous for making movies in".format(
+    description = "Shows the top 3 genres that {} is famous for making movies in".format(
         director_name)
 
     return render_template('chart3.html', options=options, dir_name=director_name, data=data, header=header, description=description, result=result)
@@ -164,7 +151,9 @@ def chart3_post():
 # GET data for query 4
 @app.route('/chart4')
 def chart4():
-    return render_template('chart3data.html', options=options)
+    header = "Query 4"
+    description = "Shows the average Rating of a Director's Movies"
+    return render_template('chart3data.html', options=options, header=header, description=description)
 
 
 # render query 4
@@ -186,7 +175,7 @@ def chart4_post():
     result = df.to_html()
 
     header = "Query 4"
-    description = "Shows the avg Rating of the Directors Movies"
+    description = "Shows the average Rating of " + director_name + "'s Movies"
 
     return render_template('chart4.html', options=options, dir_name=director_name, data=data, header=header, description=description, result=result)
 
@@ -194,7 +183,9 @@ def chart4_post():
 # GET data for query 5
 @app.route('/chart5')
 def chart5():
-    return render_template('chart5data.html', options=options)
+    header = "Query 5"
+    description = "Shows the number of movies belonging to a genre between 2 time ranges"
+    return render_template('chart5data.html', options=options, header=header, description=description)
 
 
 # render query 5
@@ -214,8 +205,6 @@ def chart5_post():
 
     df = pd.DataFrame(list(count.items()))
     result = df.to_html()
-    # result = result[:34] + ' table thead-light' + result[34:]
-    print(result)
 
     header = "Query 5"
     description = "Shows the number of movies belonging to the genre {} between 2 time ranges {}-{}.".format(

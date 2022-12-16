@@ -12,6 +12,16 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+.source-code {
+    cursor: pointer;
+    text-decoration: none;
+    color: #e0e0e0;
+}
+
+.source-code:hover {
+    opacity: 0.7;
+}
+
 .main-container {
     min-height: 100vh;
     background-color: #121212;
